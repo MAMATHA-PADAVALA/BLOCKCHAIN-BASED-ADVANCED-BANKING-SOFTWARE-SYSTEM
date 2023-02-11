@@ -1,12 +1,12 @@
 <html>
     <head>
-        <title>Add Loan</title>
+        <title>View Loans</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+		
 		<style>
 			h1{
                 text-align: center;
@@ -23,6 +23,12 @@
                 font-size: 25px;
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             }
+            table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+}
             </style>
     </head>
     <body>
@@ -47,8 +53,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Loans
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="active"><a href="/addloan">Add Loan</a></li>
-                        <li><a href="/cviewloans">View Loans</a></li>
+                        <li><a href="/addloan">Add Loan</a></li>
+                        <li class="active"><a href="/cviewloans">View Loans</a></li>
                     </ul>
                 </li>
                 
@@ -57,25 +63,27 @@
             </div>
         </nav>
         <h1><marquee width="400" behavior="alternate">
-            <font face="Brush Script MT" size="8" color="green"><b><i>Add Loan</i></b>
+            <font face="Brush Script MT" size="8" color="green"><b><i>View Loans</i></b>
             </font>
             </marquee> <br>
            </h1>
-        <div>
-        <form action="/addloanform" method="post">
-            <center>
-            
-                <div class="form-group">    
-                    <label for="amount">Enter Amount</label>:</label>
-                    <input type="number" id="amount" name="amount" required="">
-                </div>
-                <button type="submit" class="btn btn-warning btn-login" id="login">Request Loan</button>
+           <table border="1" align="center">
+            <tr>
+                <th>Customer</th>
+                <th>Loan Amount</th>
+                <th>Loan I'd</th>
+                <th>Loan Status</th>
+            </tr>
+            {%for i in range(0,len)%}
+            <tr>
+                <td>{{dashboard_data[i][0]}}</td>
+                <td>{{dashboard_data[i][1]}}</td>
+                <td>{{dashboard_data[i][2]}}</td>
+                <td>{{dashboard_data[i][3]}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+</body>
 
-            </center>
 
-        </form>
-        <span style="color:red"><b>{{err}}</b></span>
-        <span style="color:green"><b>{{res}}</b></span>
-        </div>
-    </body>
 </html>
